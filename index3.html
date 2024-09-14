@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista Interativa com Vue.js</title>
+  <style>
+    .container {
+      text-align: center;
+      margin-top: 50px;
+    }
+    .input-container {
+      margin-bottom: 20px;
+    }
+    .button {
+      margin: 5px;
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+    .item {
+      cursor: pointer;
+      padding: 10px;
+      border: 1px solid #ddd;
+      margin: 5px;
+      border-radius: 4px;
+    }
+    .item:hover {
+      background-color: #f5f5f5;
+    }
+  </style>
+</head>
+<body>
+  <div id="app" class="container">
+    <div class="input-container">
+      <input v-model="newItem" @keyup.enter="addItem" placeholder="Digite um item" />
+      <button @click="addItem" class="button">Adicionar Item</button>
+    </div>
+
+    <ul>
+      <li v-for="(item, index) in items" :key="index" class="item" @click="removeItem(index)">
+        {{ item }}
+      </li>
+    </ul>
+  </div>
+
+  <!-- Incluindo Vue.js a partir de um CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data() {
+        return {
+          newItem: '', // Armazena o valor do novo item a ser adicionado
+          items: [] // Armazena a lista de itens
+        };
+      },
+      methods: {
+        addItem() {
+          // Adiciona o item à lista se não estiver vazio
+          if (this.newItem.trim() !== '') {
+            this.items.push(this.newItem.trim());
+            this.newItem = ''; // Limpa o campo de entrada
+          }
+        },
+        removeItem(index) {
+          // Remove o item da lista pelo índice
+          this.items.splice(index, 1);
+        }
+      }
+    });
+  </script>
+</body>
+</html>

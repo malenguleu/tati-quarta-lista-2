@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mostrar/Ocultar Texto com Vue.js</title>
+  <style>
+    .container {
+      text-align: center;
+      margin-top: 50px;
+    }
+    .button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+    .text {
+      font-size: 20px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div id="app" class="container">
+    <button @click="toggleText" class="button">
+      {{ showText ? 'Ocultar Texto' : 'Mostrar Texto' }}
+    </button>
+    <div v-if="showText" class="text">
+      materia complicada da peste.
+    </div>
+  </div>
+
+  <!-- Incluindo Vue.js a partir de um CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data() {
+        return {
+          showText: false
+        };
+      },
+      methods: {
+        toggleText() {
+          this.showText = !this.showText;
+        }
+      }
+    });
+  </script>
+</body>
+</html>
